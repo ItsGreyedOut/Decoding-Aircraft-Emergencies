@@ -2,7 +2,7 @@
 
 Team Project 3 - Visualization that includes Python Flask–powered API, HTML/CSS, JavaScript, and at least one database 
 
-![alt text](http://github.com/itsgreyedout/project-3/images/airplane.jpg?raw=true)
+![alt text](http://github.com/itsgreyedout/project-3/blob/master/images/airplane.jpg?raw=true)
 
 About this project:
 As frequent flyers, our team was interested in exploring aircraft data related to 7700 squawk codes, in flight emergency air situations. etc...A dashboard page with multiple charts that update from the same data
