@@ -9,7 +9,7 @@ As frequent flyers, our team was interested in exploring aircraft data related t
 1 January 2018 and 29 January 2020.
 
 # Technologies:
-Req: Your project should include at least one JS library that we did not cover
+Requirement: The project should include at least one JS library that we did not cover
 Python
 Javascript
 SQL
@@ -23,7 +23,7 @@ Heroku
 ![alt text](https://github.com/ItsGreyedOut/Project-3/blob/master/images/ArchDiag.jpg)
 
 # Data Sources:
-Req: Your project must be powered by a dataset with at least 100 records
+Requirement: The project must be powered by a dataset with at least 100 records
 
 Aircraft Metadata: Aircraft Metadata .csv
 Flight Trajectory: Aircraft Flight parquet.gz
@@ -37,7 +37,7 @@ Aircraft flight info https://traffic-viz.github.io/index.html. Download the .par
 # Flask: 
 
 # Dashboard: 
-Req: Your project must include some level of user-driven interaction (e.g., menus, dropdowns, textboxes)
+Requirement: The project must include some level of user-driven interaction (e.g., menus, dropdowns, textboxes)
 [add description and screenshots of visualizations]
 
 # Project 3 ✍️ Team members and links to their personal GitHub sites to review thier portfolios:
