@@ -20,7 +20,7 @@ HTML/CSS
 Heroku
 
 # Architectural Diagram:
-![alt text](http://github.com/itsgreyedout/project-3/blob/master/images/archdiag.jpg?raw=true)
+![alt text](https://github.com/itsgreyedout/project-3/blob/master/images/archdiag.jpg?raw=true)
 
 # Data Sources:
 Req: Your project must be powered by a dataset with at least 100 records
