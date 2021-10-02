@@ -35,26 +35,28 @@ app = Flask(__name__)
 #################################################
 
 @app.route("/")
-def welcome():
+def dashboard():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+    
     """List all available api routes."""
-    return render_template('index.html')
+    return render_template('index.html', dashboard=results)
 
 
-@app.route("/api/v1.0/flight_path")
-def population():
+@app.route("/api/v1.0/squawk7700")
+def squawk7700():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-   
     # Query all passengers
     results = session.query(Population.country_code, Population.country, Population.population).all()
 
     session.close()
-    return render_template('index1.html', population=results  )
+    return render_template('index1.html', squawk7700=results)
 
 
-@app.route("/api/v1.0/pharma_spending")
-def pharma():
+@app.route("/api/v1.0/about")
+def about():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
@@ -62,22 +64,7 @@ def pharma():
     results = session.query(Pharma_spending.country_code, Pharma_spending.percent_pharmaceutical_spending).all()
 
     session.close()
-    return render_template('index2.html', pharma=results)
-
-@app.route("/api/v1.0/population_pharma_spending")
-def pop_pharma():
-    # Create our session (link) from Python to the DB
-    session = Session(engine)
-
-    # """Joining"""
-   
-    p = [Population.country_code, Population.country, Population.population,Pharma_spending.percent_pharmaceutical_spending]	
-    results = session.query(*p).filter(Population.country_code == Pharma_spending.country_code).all()
-
-    session.close()
-    return render_template('index3.html', population_pharma=results)
-
-
+    return render_template('index2.html', about=results)
 
 if __name__ == '__main__':
     app.run(debug=True)
