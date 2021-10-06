@@ -43,13 +43,13 @@ def dashboard():
     
     """List all available api routes."""
     #return render_template('index.html', dashboard=results)
-    combined_query=text("select *"
-                        "from flight_summary fs, flight_trajectory ft, aircraft_metadata am"
-                        "where fs.flight_id = ft.flight_id"
-                        "and am.icao24 = ft.icao24"
-                        "and ft.flight_id in"
-                                "(select distinct ft.flight_id from flight_trajectory ft where ft.flight_id = :x)")
-    combined_flight_data = engine.execute(combined_query, {"x"="ARG1511_20180101"}).fetchall()
+    combined_query=text("select * "
+                        "from flight_summary fs, flight_trajectory ft, aircraft_metadata am "
+                        "where fs.flight_id = ft.flight_id "
+                        "and am.icao24 = ft.icao24 "
+                        "and ft.flight_id in "
+                        "(select distinct ft.flight_id from flight_trajectory ft where ft.flight_id = :x)")
+    combined_flight_data = engine.execute(combined_query, {"x":"ARG1511_20180101"}).fetchall()
     combined_df = pd.DataFrame(combined_flight_data)
     return render_template('index.html', dashboard=combined_df.to_json())
 
@@ -61,11 +61,11 @@ def trajectory_initial():
     
     """List all available api routes."""
     #return render_template('index.html', dashboard=results)
-    default_trajectory_query = text("select *"
-                        "flight_trajectory ft"
-                        "where ft.flight_id in"
-                                "(select distinct ft.flight_id from flight_trajectory ft where ft.flight_id = :x)") 
-    initial_aircraft_trajectory = engine.execute(default_trajectory_query, { "x"="ARG1511_20180101"}).fetchall()
+    default_trajectory_query = text("select * "
+                        "from flight_trajectory ft "
+                        "where ft.flight_id in "
+                        "(select distinct ft.flight_id from flight_trajectory ft where ft.flight_id = :x)") 
+    initial_aircraft_trajectory = engine.execute(default_trajectory_query, { "x":"ARG1511_20180101"}).fetchall()
     trajectory_df = pd.DataFrame(initial_aircraft_trajectory)
     return render_template('index.html', first_view_trajectory=trajectory_df.to_json())
 
@@ -77,24 +77,13 @@ def trajectory_dynamic():
     
     """List all available api routes."""
     #return render_template('index.html', dashboard=results)
-    user_selected_aircraft_trajectory = text("select *"
-                        "flight_trajectory ft"
-                        "where ft.flight_id in"
-                                "(select distinct ft.flight_id from flight_trajectory ft where ft.flight_id = :x)") 
-    filtered_aircraft_trajectory = engine.execute(user_selected_aircraft_trajectory, {"x"="ARG1511_20180101"}).fetchall()
+    user_selected_aircraft_trajectory = text("select * "
+                        "from flight_trajectory ft "
+                        "where ft.flight_id in "
+                        "(select distinct ft.flight_id from flight_trajectory ft where ft.flight_id = :x)") 
+    filtered_aircraft_trajectory = engine.execute(user_selected_aircraft_trajectory, {"x":"ARG1511_20180101"}).fetchall()
     filtered_trajectory_df = pd.DataFrame(filtered_aircraft_trajectory)
     return render_template('index.html', filtered_view_trajectory=filtered_trajectory_df.to_json())
-
-@app.route("/")
-def dashboard():
-    # Create our session (link) from Python to the DB
-    session = Session(engine)
-    
-    """List all available api routes."""
-    #return render_template('index.html', dashboard=results)
-    combined_flight_data = engine.execute('* from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 and ft.flight_id in (select distinct ft.flight_id from flight_trajectory ft where ft.squawk = 7700)').fetchall()
-    combined_df = pd.DataFrame(combined_flight_data)
-    return render_template('index.html', dashboard=combined_df.to_json())
 
 
 @app.route("/test")

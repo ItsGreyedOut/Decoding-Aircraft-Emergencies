@@ -30,7 +30,8 @@
   <!-- D3 JavaScript -->
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <!-- Our JavaScript -->
-  <script>const jsdata = {{ dataFromFlask | tojson | safe }}</script>
+  <!-- <script>const jsdata = {{ dataFromFlask | tojson | safe }}</script> -->
+  <script>const traj = {{ first_view_trajectory | safe }}</script>
   <script type="text/javascript" src="static/visualizations.js"></script>
 
 </body>
