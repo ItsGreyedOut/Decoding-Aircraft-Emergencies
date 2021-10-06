@@ -43,6 +43,22 @@ def dashboard():
     #return render_template('index.html', dashboard=results)
     combined_flight_data = engine.execute('select count(*) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 and ft.flight_id in (select distinct ft.flight_id from flight_trajectory ft where ft.squawk = 7700)').fetchall()
     combined_df = pd.DataFrame(combined_flight_data)
+    return render_template('index.html', dashboard=combined_df.to_json())
+
+
+@app.route("/test")
+def test():
+    session = Session(engine)
+
+    # Query all passengers
+    results = engine.execute('select distinct substr(am.manufacturername,1,6), count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 and ft.flight_id in (select distinct ft.flight_id from flight_trajectory ft where ft.squawk = 7700) group by substr(am.manufacturername,1,6) order by count(distinct fs.flight_id) DESC').fetchall()
+
+    session.close()
+    #return render_template('index.html', squawk7700=results)
+    data = {'result': [dict(row) for row in results]}
+    return render_template('index.html', dataFromFlask=data)
+
+
 
 @app.route("/api/v1.0/squawk7700")
 def squawk7700():
@@ -53,7 +69,7 @@ def squawk7700():
     results = engine.execute('select distinct substr(am.manufacturername,1,6), count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 and ft.flight_id in (select distinct ft.flight_id from flight_trajectory ft where ft.squawk = 7700) group by substr(am.manufacturername,1,6) order by count(distinct fs.flight_id) DESC').fetchall()
 
     session.close()
-    return render_template('index1.html', squawk7700=results)
+    return render_template('index.html', squawk7700=results)
 
 
 @app.route("/api/v1.0/about")
