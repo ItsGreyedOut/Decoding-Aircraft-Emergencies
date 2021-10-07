@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd 
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.sql import text
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 
@@ -11,8 +12,9 @@ from flask import render_template, request, redirect, url_for, flash
 #################################################
 # Database Setup
 #################################################
-connection_string = "postgres:postgres@localhost:5432/aircraft_project"
-engine = create_engine(f'postgresql://{connection_string}')
+jack_connection_string = "postgres:postgres@localhost:5432/aircraft_project"
+#matt_connection_string = "postgresql://postgres:Thatstraightline84!@localhost:5432/aircraft_project"
+engine = create_engine(f'postgresql://{jack_connection_string}')
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -41,8 +43,62 @@ def dashboard():
     
     """List all available api routes."""
     #return render_template('index.html', dashboard=results)
-    combined_flight_data = engine.execute('select count(*) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 and ft.flight_id in (select distinct ft.flight_id from flight_trajectory ft where ft.squawk = 7700)').fetchall()
+    combined_query=text("select * "
+                        "from flight_summary fs, flight_trajectory ft, aircraft_metadata am "
+                        "where fs.flight_id = ft.flight_id "
+                        "and am.icao24 = ft.icao24 "
+                        "and ft.flight_id in "
+                        "(select distinct ft.flight_id from flight_trajectory ft where ft.flight_id = :x)")
+    combined_flight_data = engine.execute(combined_query, {"x":"ARG1511_20180101"}).fetchall()
     combined_df = pd.DataFrame(combined_flight_data)
+    return render_template('index.html', dashboard=combined_df.to_json())
+
+#TRAJECTORY DEFAULT
+@app.route("/trajectory_default")
+def trajectory_initial():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+    
+    """List all available api routes."""
+    #return render_template('index.html', dashboard=results)
+    default_trajectory_query = text("select * "
+                        "from flight_trajectory ft "
+                        "where ft.flight_id in "
+                        "(select distinct ft.flight_id from flight_trajectory ft where ft.flight_id = :x)") 
+    initial_aircraft_trajectory = engine.execute(default_trajectory_query, { "x":"ARG1511_20180101"}).fetchall()
+    trajectory_df = pd.DataFrame(initial_aircraft_trajectory)
+    return render_template('index.html', first_view_trajectory=trajectory_df.to_json())
+
+#TRAJECTORY FILTERED
+@app.route("/trajectory_filtered")
+def trajectory_dynamic():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+    
+    """List all available api routes."""
+    #return render_template('index.html', dashboard=results)
+    user_selected_aircraft_trajectory = text("select * "
+                        "from flight_trajectory ft "
+                        "where ft.flight_id in "
+                        "(select distinct ft.flight_id from flight_trajectory ft where ft.flight_id = :x)") 
+    filtered_aircraft_trajectory = engine.execute(user_selected_aircraft_trajectory, {"x":"ARG1511_20180101"}).fetchall()
+    filtered_trajectory_df = pd.DataFrame(filtered_aircraft_trajectory)
+    return render_template('index.html', filtered_view_trajectory=filtered_trajectory_df.to_json())
+
+
+@app.route("/test")
+def test():
+    session = Session(engine)
+
+    # Query all passengers
+    results = engine.execute('select distinct substr(am.manufacturername,1,6), count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 and ft.flight_id in (select distinct ft.flight_id from flight_trajectory ft where ft.squawk = 7700) group by substr(am.manufacturername,1,6) order by count(distinct fs.flight_id) DESC').fetchall()
+
+    session.close()
+    #return render_template('index.html', squawk7700=results)
+    data = {'result': [dict(row) for row in results]}
+    return render_template('index.html', dataFromFlask=data)
+
+
 
 @app.route("/api/v1.0/squawk7700")
 def squawk7700():
@@ -53,7 +109,7 @@ def squawk7700():
     results = engine.execute('select distinct substr(am.manufacturername,1,6), count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 and ft.flight_id in (select distinct ft.flight_id from flight_trajectory ft where ft.squawk = 7700) group by substr(am.manufacturername,1,6) order by count(distinct fs.flight_id) DESC').fetchall()
 
     session.close()
-    return render_template('index1.html', squawk7700=results)
+    return render_template('index.html', squawk7700=results)
 
 
 @app.route("/api/v1.0/about")
