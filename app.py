@@ -117,15 +117,15 @@ def test_two_data():
     timestamp = [result[1] for result in results1]
     altitude= [int(result[2]) for result in results1]
 
-    trajectory_data = [{
+    trajectory_table = [{
         
         "Flight ID": flightid,
         "timestamp": timestamp,
         "altitude": altitude,
     }]  
 
-    return jsonify(trajectory_data)
-
+    
+    return render_template('index.html', trajectory_data = jsonify(trajectory_table))
     # data = {'result': [dict(row) for row in results1]}
     # return render_template('index.html', test_two_data= data)
 
@@ -170,7 +170,7 @@ def flight_summary_data():
     avh_result = [result[15] for result in results2]
     avh_fueldump = [result[16] for result in results2]
     
-    flight_summary_data = [{
+    flight_summary_table = [{
         
         "Flight ID": flightid,
         "callsign": callsign,
@@ -190,8 +190,8 @@ def flight_summary_data():
         "AVH Fueldump": avh_fueldump
     }] 
     
-    return jsonify(flight_summary_data)
-
+   
+    return render_template('index.html', flight_summary_data = jsonify(flight_summary_table))
 
 
 
