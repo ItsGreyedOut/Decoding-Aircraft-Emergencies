@@ -62,6 +62,23 @@ h7 {
     color: black;
 }
 
+.table-wrapper {
+    max-height: 250px;
+    overflow: auto;
+    display:inline-block;
+    width: 90%;
+    margin: auto;
+  }
+
+.table-wrapper thead th {
+    position: sticky; 
+    top: 0;
+    z-index: 1;
+}
+
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 16px; }
+th     { background:#eee; }
 
 /* Panels */
 
@@ -73,16 +90,61 @@ h7 {
 
 .panel-primary {
     border-color: black;
+    display: block;
+    margin: auto;
+    padding: 10px;
+    font: 14px Arial, Helvetica, sans-serif;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width:fit-content;
+}
+
+.panel-primary p {
+    width:fit-content;
+}
+
+.panel-primary span {
+    font-weight: bold
 }
 
 .panel-title {
     color: black;
+    text-align: center;
+    font-size: 18px;
 }
 
 .panel-body {
     color: black;
+    width:fit-content;
 }
 
+.box {
+    margin-left: 8px;
+    margin-right: 8px;
+    padding:15px;
+}
+
+#flight_title {
+    font-size: 22px;
+    color: black;
+    text-align: center;
+}
+
+#map {
+    height: 500px;
+    margin: auto;
+    margin-top: 5px;
+}
+
+#line {
+    height: 400px;
+    margin: auto;
+}
+
+.telemetry {
+    display: flexbox;
+    margin: auto;
+}
 
 /* Footer */
 
