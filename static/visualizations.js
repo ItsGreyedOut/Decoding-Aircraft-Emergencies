@@ -1,47 +1,95 @@
-console.log(traj);
+console.log(dataset);
 
-/* 
+
 // Default Flight Summary Table
-let summary = jsdata['metadata'];
+let one = 'ARG1511_20180101';
+
 let flight_info = "";
-for (const [key, value] of Object.entries(summary)) {
-    flight_info += key+" : "+value+"<br>";
-}
+for (let f=0; f<dataset[1][0]['Flight ID'].length;f++) {
+    if (dataset[1][0]['Flight ID'][f] = one) {
+        for (const [key, value] of Object.entries(dataset[1][0])) { 
+            flight_info += key+" : "+value[f]+"<br>";
+        }
+    }
+};
+
 document.getElementById("flight_info").innerHTML = flight_info
 
+
 // Default Aircraft Info Table
-let meta = data['metadata'][0];
-let demographics = "";
+let meta = dataset[2][0];
+let aircraft = "";
 for (const [key, value] of Object.entries(meta)) {
-    demographics += key+" : "+value+"<br>";
+    aircraft += key+" : "+value+"<br>";
 }
-document.getElementById("aircraft_info").innerHTML = demographics
+document.getElementById("aircraft_info").innerHTML = aircraft
+
 
 // Default Altitude/Speed Plot
-let trace2 = {
-    x:ex['otu_ids'],
-    y:ex['sample_values'],
-    mode:'markers',
-    test:ex['otu_labels'],
-    marker: {
-        size:ex['sample_values'],
-        color:ex['otu_ids']
-    }
+labels = [];
+for (let i = 0; i < dataset[0][0]['Squawk'].length; i++) {
+    labels.push(`Squawk: ${dataset[0][0]['Squawk'][i]}`);
 };
-var layout2 = {
+
+let trace1 = {
+    x: dataset[0][0]['timestamp'],
+    y: dataset[0][0]['altitude'],
+    text: labels,
+    type: 'line',
+    name: "Altitude (ft.)"
+};
+
+let trace2 = {
+    x: dataset[0][0]['timestamp'],
+    y: dataset[0][0]['groundspeed'],
+    text: labels,
+    type: 'line',
+    yaxis: 'y2',
+    name: "Groundspeed (kts.)"
+};
+var layout1 = {
     title: {
-        text: 'OTU Bubble Chart'
+        text: 'Flight Telemetry'
     },
     xaxis: {
-        title: {text:'OTU Number'}
+        title: {text:'Time'}
     },
     yaxis: {
-        title: {text:'Value'}
+        title: {text:'Altitude (ft.)'}
+    },
+    yaxis2: {
+        title: 'Groundspeed (kts.)',
+        overlaying: 'y',
+        side: 'right'
+    },
+    legend: {
+        x: 0.8,
+        y: 1.2
     }
 };
-var data2 = [trace2];
-Plotly.newPlot("bubble",data2,layout2)
+var data1 = [trace1,trace2];
+Plotly.newPlot("line",data1,layout1)
 
+/*
+for (var j = 0; j < dataset[].length; j++) {
+    var dropdown = document.getElementById("selDataset");
+    var opt = document.createElement("option"); 
+    opt.text = subj[j].toString();
+    opt.value = subj[j].toString();
+    dropdown.options.add(opt);
+};
+
+
+d3.selectAll("#selDataset").on("change", change_flight);
+
+function change_flight() {
+    var dropdownMenu = d3.select("#selDataset");
+    var new_flight = dropdownMenu.property("value");
+    window.location.href = ('http://127.0.0.1:5000/flight_dashboard'+new_flight);
+}
+*/
+
+/*
 // Default Flight Trajectory Map
 var street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -165,4 +213,6 @@ d3.json(url).then(function(response) {
     legend.addTo(myMap);
 
     });
-}); */
+});
+
+*/

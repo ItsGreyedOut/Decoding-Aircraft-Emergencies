@@ -16,7 +16,7 @@ from flask import render_template, request, redirect, url_for, flash
 #matt_connection_string = "postgresql://postgres:Thatstraightline84!@localhost:5432/aircraft_project"
 #engine = create_engine(f'postgresql://{matt_connection_string}')
 engine = create_engine(
-    "postgresql://postgres:Thatstraightline84!@localhost:5432/aircraft_project")
+    "postgresql://postgres:postgres@localhost:5432/aircraft_project")
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -103,8 +103,6 @@ app = Flask(__name__)
 
 
 
-
-
 @app.route("/flight_dashboard")
 def test_two_data():
     session = Session(engine)
@@ -146,7 +144,7 @@ def test_two_data():
     }]  
 
 
-    flightid= [result[0] for result in results2]
+    flight_id2= [result[0] for result in results2]
     callsign = [result[1] for result in results2]
     number= [result[2] for result in results2]
     icao24 = [result[3] for result in results2]
@@ -166,7 +164,7 @@ def test_two_data():
     
     flight_summary_table = [{
         
-        "Flight ID": flightid,
+        "Flight ID": flight_id2,
         "callsign": callsign,
         "number": number,
         "icao24": icao24,
@@ -232,7 +230,7 @@ def test_two_data():
     }]
 
     table_list=[trajectory_table, flight_summary_table, aircraft_info_table]
-    return render_template('index.html', data = jsonify(table_list))
+    return render_template('index.html', data = table_list)
     # data = {'result': [dict(row) for row in results1]}
     # return render_template('index.html', test_two_data= data)
 

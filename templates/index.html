@@ -115,30 +115,29 @@
         <div class="col-sm-1">
         </div>
         <div class="col-sm-2">
-            <div id="aircraft_info">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Aircraft Info</h3>
                     </div>
-                    <div id="sample-metadata" class="panel-body"></div>
+                    <div id="sample-metadata" class="panel-body">
+                        <div id="aircraft_info"></div>
+                    </div>
                 </div>
-            </div>
         </div>
         <div class="col-sm-2">
-            <div id="flight_info">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Flight Info</h3>
                     </div>
-                    <div id="sample-metadata" class="panel-body"></div>
+                    <div id="sample-metadata" class="panel-body">
+                        <div id="flight_info"></div>
+                    </div>
                 </div>
-            </div>
         </div>
         <!-- Plots -->
         <div class="col-sm-1">
         </div>
         <div class="col-md">
-            <h3 class="panel-title">Altitude Plot</h3>
             <div id="line"></div>
         </div>
     </div>
@@ -149,7 +148,7 @@
         </div>
         <div class="col-md-10">
             <h3 class="panel-title">Flight Map</h3>
-            <div id="line"></div>
+            <div id="map"></div>
         </div>
     </div>
     <br>
@@ -158,14 +157,8 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!-- Reference Data from Flask -->
-    <script>
-        const jsdata = {
-            {
-                dataFromFlask | tojson | safe
-            }
-        }
-    </script>
-    <script src="static/app.js"></script>
+    <script>const dataset = {{ data | tojson | safe }}</script>
+    <script src="static/visualizations.js"></script>
 
 </body>
 <!-- Footer Section -->
