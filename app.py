@@ -12,11 +12,11 @@ from flask import render_template, request, redirect, url_for, flash
 #################################################
 # Database Setup
 #################################################
-#jack_connection_string = "postgres:postgres@localhost:5432/aircraft_project"
+connection_string = "postgres:postgres@localhost:5432/aircraft_project"
 #matt_connection_string = "postgresql://postgres:Thatstraightline84!@localhost:5432/aircraft_project"
-#engine = create_engine(f'postgresql://{matt_connection_string}')
-engine = create_engine(
-    "postgresql://postgres:postgres@localhost:5432/aircraft_project")
+engine = create_engine(f'postgresql://{connection_string}')
+# engine = create_engine(
+    # "postgresql://postgres:postgres@localhost:5432/aircraft_project")
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -332,7 +332,7 @@ def summary_stats():
      # Queries for summary statistics
      results1 = engine.execute('select distinct substr(am.manufacturername,1,6), count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by substr(am.manufacturername,1,6) order by count(distinct fs.flight_id) DESC').fetchall()
      results2 = engine.execute('select distinct fs.origin, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.origin order by count(distinct fs.flight_id) DESC').fetchall()
-     results3 = engine.execute('select distinct fs.destination, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.origin order by count(distinct fs.flight_id) DESC').fetchall()
+     results3 = engine.execute('select distinct fs.destination, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.destination order by count(distinct fs.flight_id) DESC').fetchall()
      results4 = engine.execute('select distinct am.icaoaircrafttype, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by am.icaoaircrafttype order by count(distinct fs.flight_id) DESC').fetchall()
      results5 = engine.execute('select distinct fs.avh_problem, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.avh_problem').fetchall()
      results6 = engine.execute('select distinct fs.avh_result, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.avh_result').fetchall()
@@ -388,10 +388,14 @@ def summary_stats():
      }]
      table_list=[manufacturer_table, origin_table, destination_table, aircraft_type_table, problem_frequency_table, result_frequency_table]
      
-     return render_template('index.html', data = jsonify(table_list))
+     return render_template('index1.html', data = jsonify(table_list))
 
+@app.route("/about")
+def readme():
+    print ('this is a very impressive project')
 
-
+if __name__ == '__main__':
+    app.run(debug=True)
 
 # data = {'result': [dict(row) for row in results1]}
 # return render_template('index.html', test_two_data= data)
@@ -548,8 +552,7 @@ def summary_stats():
 # # #     session.close()
 # #     return render_template('index2.html', about=results)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
 
 
 # # # import necessary libraries
