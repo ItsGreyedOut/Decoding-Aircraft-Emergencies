@@ -32,9 +32,9 @@
                         <h7 class="navi">Pages</h7>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="http://127.0.0.1:5000/">Home</a>
-                        <a class="dropdown-item" href="http://127.0.0.1:5000/summary_stats">Summary Statistics</a>
-                        <a class="dropdown-item" href="http://127.0.0.1:5000/about">About</a>
+                        <a class="dropdown-item" href="{{ url_for('dashboard') }}">Home</a>
+                        <a class="dropdown-item" href="{{ url_for('summary_stats') }}">Summary Statistics</a>
+                        <a class="dropdown-item" href="{{ url_for('about') }}">About</a>
                     </div>
                 </li>
 
