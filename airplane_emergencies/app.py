@@ -17,7 +17,7 @@ app = Flask(__name__)
 #################################################
 # Database Setup
 #################################################
-engine = create_engine("postgresql://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti")
+engine = create_engine("postgresql+psycopg2://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti")
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -30,7 +30,7 @@ flight_summary = Base.classes.flight_summary
 flight_trajectory = Base.classes.flight_trajectory
 
 # Heroku
-DATABASE_URL = os.environ['postgres://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti']
+DATABASE_URL = os.environ['postgresql+psycopg2://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # # Heroku setup
