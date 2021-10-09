@@ -3,9 +3,9 @@ console.log(dataset);
 console.log(dataset[0][0]['Number of Flights with 7700 Squawk Code'])
 console.log(dataset[0][0]['Flight Manufacturer'])
 
-// let bar_title = ""
-// bar_title += "<p>Top 10 Flight Manufacturers With Aircraft Emergencies</p>";
-// document.getElementById("bar_chart").innerHTML = bar_title;
+// Bar Graph Title
+bar_title = "Top 10 Flight Manufacturers With Aircraft Emergencies";
+document.getElementById("dyno").innerHTML = bar_title;
 
 var opts={0:'Flight Manufacturer',
     1:'Origin',
@@ -82,6 +82,6 @@ function new_chart() {
     };
     myChart.update()
 
-    // var bar_title = "<h3 style='color: black;text-align: center;font-size: 18px;'>Top 10"+String(opts[choice])+"With Aircraft Emergencies</h3>";
-    // document.getElementById("bar_chart").innerHTML = bar_title
+    bar_title = "Top 10 "+String(opts[choice])+"s With Aircraft Emergencies";
+    document.getElementById("dyno").innerHTML = bar_title
 };

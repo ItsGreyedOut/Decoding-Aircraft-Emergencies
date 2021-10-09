@@ -29,7 +29,7 @@
             <ul class="nav nav-pills navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <h7>Pages</h7>
+                        <h7 class="navi">Pages</h7>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="http://127.0.0.1:5000/">Home</a>
@@ -41,8 +41,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right ">
                 <li class="nav-item">
-                    <a class="navbar-brand" href="https://github.com/ItsGreyedOut/Project-3"> <i class="fa fa-github" aria-hidden="true"></i>&nbsp;
-                        <h4> Repo </h4>
+                    <a class="navbar-brand" id="navbarDropdown" href="https://github.com/ItsGreyedOut/Project-3"> <i class="fa fa-github" aria-hidden="true"></i>&nbsp;
+                        <h4 class="navi">Repository</h4>
                     </a>
                 </li>
             </ul>
@@ -52,7 +52,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 jumbotron text-center">
-                <h1>Emergency Aircraft Dashboard</h1>
+                <h1>Aircraft Emergencies Dashboard</h1>
                 <h6><strong>Use the interactive charts below to explore the dataset</strong></h6>
             </div>
             <div class="row">
@@ -123,13 +123,13 @@
         </div>
     </div>
     <!-- Plots -->
-    <div class="container">   
+    <div class="well">   
         <div class="col-auto">
             <div id="line"></div>
         </div>
     </div> 
 
-    <div class="container">
+    <div class="well">
         <div class="col-auto">
             <h3 class="panel-title">Flight Map</h3>
             <div id="map"></div>
