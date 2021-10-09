@@ -3,9 +3,10 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.sql import text
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, MetaData, func
-from flask_sqlalchemy import SQLAlchemy
 import os
 import psycopg2
+import subprocess
+from sqlalchemy.engine.create import create_engine
 
 from flask import Flask, jsonify
 from flask import render_template, request, redirect, url_for, flash
@@ -18,7 +19,30 @@ app = Flask(__name__)
 #################################################
 # Database Setup
 #################################################
-engine = create_engine("postgresql://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti")
+
+# Get the Database URL using Heroku CLI
+# -------------------------------------
+# Running the following from Python: $heroku config:get DATABASE_URL --app your-app-name
+heroku_app_name = "gtdsproject3aircraftdata"
+
+# Assumption: HEROKU_API_KEY is set in your terminal
+# You can confirm that it's set by running the following python command os.environ["HEROKU_API_KEY"]
+raw_db_url = subprocess.run(
+    ["heroku", "config:get", "DATABASE_URL", "--app", heroku_app_name],
+    capture_output=True  # capture_output arg is added in Python 3.7
+).stdout 
+
+# Convert binary string to a regular string & remove the newline character
+db_url = raw_db_url.decode("ascii").strip()
+
+# Convert "postgres://<db_address>"  --> "postgresql+psycopg2://<db_address>" needed for SQLAlchemy
+final_db_url = "postgresql+psycopg2://" + db_url.lstrip("postgres://") 
+
+# Create engine
+engine = create_engine(final_db_url)
+
+DATABASE_URL = os.environ[final_db_url]
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # reflect an existing database into a new model
 metadata = MetaData()
@@ -34,8 +58,7 @@ flight_summary = Base.classes.flight_summary
 flight_trajectory = Base.classes.flight_trajectory
 
 # Heroku
-DATABASE_URL = os.environ['postgresql://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti']
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
 
 # # Heroku setup
 # engine.config['postgresql://postgres:postgres@localhost:5432/aircraft_project'] = os.environ.get('postgres://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti', '')
