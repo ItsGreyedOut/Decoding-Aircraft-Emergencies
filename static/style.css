@@ -36,6 +36,7 @@ h4 {
 
 h5 {
     color: black;
+    font-size: 14px;
 }
 
 h6 {
@@ -128,6 +129,11 @@ th     { background:#eee; }
     font-size: 22px;
     color: black;
     text-align: center;
+}
+
+#flight_table {
+    font-size: 13px;
+    color:black;
 }
 
 #map {

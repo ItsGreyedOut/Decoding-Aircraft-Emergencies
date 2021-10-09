@@ -60,37 +60,40 @@
                 </div>
             </div>
             <!-- Filters -->
-            <div class="row">
-                <div class="col-lg">
-                    <div class="filter" id="Date">
-                        <h5> <strong>Date</strong>
-                        </h5>
-                        <select id="selDataset"></select>
+            <div class="well" style="width:90%">
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="filter" id="Date">
+                            <h5> <strong>Date</strong>
+                            </h5>
+                            <select id="selDataset"></select>
+                        </div>
+                    </div>
+                    <div class="col-lg">
+                        <div class="filter" id="Origin">
+                            <h5> <strong>Origin</strong>
+                            </h5>
+                            <select id="selDataset1"></select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-lg">
+                        <div class="filter" id="Problem">
+                            <h5> <strong>Problem</strong>
+                            </h5>
+                            <select id="selDataset2"></select>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg">
-                    <div class="filter" id="Origin">
-                        <h5> <strong>Origin</strong>
-                        </h5>
-                        <select id="selDataset1"></select>
+            <br>
+            <br>
+            <!-- Table -->
+            <div class="container">
+                <div class="col-auto">
+                    <div class="table table-wrapper">
+                        <table id="flight_table" style="margin: auto; width: 90%;"></table>
                     </div>
                 </div>
-                <br>
-                <div class="col-lg">
-                    <div class="filter" id="Problem">
-                        <h5> <strong>Problem</strong>
-                        </h5>
-                        <select id="selDataset2"></select>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <br>
-        <!-- Table -->
-        <div class="row">
-            <div class="table table-wrapper">
-                <table id="flight_table" style="margin: auto; width: 70%;"></table>
             </div>
         </div>
     </div>
@@ -98,7 +101,7 @@
     <br>
     <br>
     <!-- Summary Stats -->
-    <div class="box">
+    <div class="well">
         <div id="flight_title"></div>
     <div class="row" style="margin:auto; width: 80%;">
         <div class="col-auto">
