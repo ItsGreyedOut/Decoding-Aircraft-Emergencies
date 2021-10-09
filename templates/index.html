@@ -32,9 +32,9 @@
                         <h7>Pages</h7>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="http://127.0.0.1:5000/api/v1.0/squawk7700">Squawk_7700</a>
-                        <a class="dropdown-item" href="http://127.0.0.1:5000/api/v1.0/about">Data</a>
-                        <a class="dropdown-item" href="http://127.0.0.1:5000/api/v1.0/about">About</a>
+                        <a class="dropdown-item" href="http://127.0.0.1:5000/">Home</a>
+                        <a class="dropdown-item" href="http://127.0.0.1:5000/summary_stats">Summary Statistics</a>
+                        <a class="dropdown-item" href="http://127.0.0.1:5000/about">About</a>
                     </div>
                 </li>
 
@@ -65,7 +65,7 @@
                     <div class="filter" id="Date">
                         <h5> <strong>Date</strong>
                         </h5>
-                        <select id="selDataset" onchange="optionChanged(this.value)"></select>
+                        <select id="selDataset"></select>
                     </div>
                 </div>
                 <div class="col-lg">
@@ -80,7 +80,7 @@
                     <div class="filter" id="Problem">
                         <h5> <strong>Problem</strong>
                         </h5>
-                        <select id="selDataset2" onchange="optionChanged(this.value)"></select>
+                        <select id="selDataset2"></select>
                     </div>
                 </div>
             </div>
@@ -155,11 +155,11 @@
 <br>
 <footer class="footer navbar-expand-lg text-center text-white">
     <div class="footer-copyright">
-        <div class="top"> <span> Emergency Aircraft Dashboard </span>
+        <div class="top"> <span>Aircraft Emergencies Dashboard </span>
         </div>
         <div class="bottom"> <span>2021</span>
         </div>
     </div>
 </footer>
-
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </html>

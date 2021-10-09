@@ -39,8 +39,7 @@ const config = {
   };
 
 let myChart = new Chart(
-    document.getElementById('myChart'),
-    config);
+    document.getElementById('myChart'), config);
 
 
 // Create Drowdown Menu Items
