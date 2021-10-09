@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Squawk 7700 Statistics</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/solar/bootstrap.min.css" rel="stylesheet" integrity="sha384-Ya0fS7U2c07GI3XufLEwSQlqhpN0ri7w/ujyveyqoxTJ2rFHJcT6SUhwhL7GM4h9" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+    <!-- Navigation Section -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info" style="border-radius: 0px;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="nav nav-pills navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <h7 class="navi">Pages</h7>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ url_for('dashboard') }}">Home</a>
+                        <a class="dropdown-item" href="{{ url_for('summary_stats') }}">Summary Statistics</a>
+                        <a class="dropdown-item" href="{{ url_for('about') }}">About</a>
+                    </div>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right ">
+                <li class="nav-item">
+                    <a class="navbar-brand" id="navbarDropdown" href="https://github.com/ItsGreyedOut/Project-3"> <i class="fa fa-github" aria-hidden="true"></i>&nbsp;
+                        <h4 class="navi">Repository</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Jumbotron -->
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 jumbotron text-center">
+                <h1>Squawk 7700 Statistics</h1>
+                <h6><strong>Use the interactive chart below to explore the dataset</strong></h6>
+            </div>
+        </div>
+        <div class="container">
+            <div class="well">
+                <h3 id="dyno" style='text-align: center;color: black;font-size: 22px;'>Title</h3>
+                <h5>Pick Chart:</h5>
+                <select id="sel"></select>
+                <p></p>        
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+            <!-- Add Javascript, Plotly and D3  -->
+            <script src="https://d3js.org/d3.v5.min.js"></script>
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script src="path/to/chartjs/dist/chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+            <!-- Reference Data from Flask -->
+            <script>const dataset = {{ data | tojson | safe }}</script>
+            <script src="static/squawk.js"></script>
+</main>
+</body>
+<!-- Footer Section -->
+<br>
+<br>
+<br>
+<footer class="footer navbar-expand-lg text-center text-white">
+    <div class="footer-copyright">
+        <div class="top"> <span>Aircraft Emergencies Dashboard </span>
+        </div>
+        <div class="bottom"> <span>2021</span>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>
