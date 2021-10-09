@@ -16,7 +16,6 @@ Dashboard Link: [Link](https://gtdsproject3aircraftdata.herokuapp.com/)
 ## Technologies: :hammer:	
 - Python
 - SQLAlchemy
-- SQL
 - PostgreSQL
 - Javascript
 - D3
