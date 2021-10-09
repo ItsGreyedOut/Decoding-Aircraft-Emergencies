@@ -1,11 +1,10 @@
-import pandas as pd
+import os
+import psycopg2
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.sql import text
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
-import os
-import psycopg2
 
 from flask import Flask, jsonify
 from flask import render_template, request, redirect, url_for, flash
