@@ -15,7 +15,7 @@ Airlines can use this data to highlight safety issues they need to address and c
 
 Dashboard Link: [Link](https://gtdsproject3aircraftdata.herokuapp.com/)
 
-## Technologies:
+## Technologies: :hammer:	
 - Python
 - SQLAlchemy
 - SQL
@@ -52,17 +52,17 @@ Dashboard Link: [Link](https://gtdsproject3aircraftdata.herokuapp.com/)
 ## Data Sources:
 Data is derived from the OpenSky dataset. Data spans flights seen by the network's more than 2500 members between 1 January 2018 and 29 January 2020.
 
--[Aircraft Metadata zip](https://opensky-network.org/datasets/metadata/)
--[Aircraft Flight parquet.gz](https://zenodo.org/record/3937483#.YVYFBUbMIdV)
--[Flight Summary 7700.csv](https://zenodo.org/record/3937483#.YVYFBUbMIdV) 
+- [Aircraft Metadata zip](https://opensky-network.org/datasets/metadata/)
+- [Aircraft Flight parquet.gz](https://zenodo.org/record/3937483#.YVYFBUbMIdV)
+- [Flight Summary 7700.csv](https://zenodo.org/record/3937483#.YVYFBUbMIdV) 
 
 ## Schema (ERD): 
 ![ERD](https://github.com/ItsGreyedOut/Project-3/blob/master/images/ERD.png)
 
-# Dashboard: 
+## Dashboard: 
 
 
-# Project 3 ✍️ Team members and links to their personal GitHub sites to review their portfolios:
+## Contributors:
 
 Lauren To -  https://github.com/laurenemilyto
 
