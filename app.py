@@ -14,9 +14,14 @@ from flask import render_template, request, redirect, url_for, flash
 #################################################
 connection_string = "postgres:postgres@localhost:5432/aircraft_project"
 #matt_connection_string = "postgresql://postgres:Thatstraightline84!@localhost:5432/aircraft_project"
+<<<<<<< HEAD
 engine = create_engine(f'postgresql://{connection_string}')
 # engine = create_engine(
     # "postgresql://postgres:postgres@localhost:5432/aircraft_project")
+=======
+#engine = create_engine(f'postgresql://{matt_connection_string}')
+engine = create_engine("postgresql://postgres:postgres@localhost:5432/aircraft_project")
+>>>>>>> jack
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -37,68 +42,6 @@ app = Flask(__name__)
 #################################################
 # Flask Routes
 #################################################
-
-# @app.route("/")
-# def dashboard():
-#     # Create our session (link) from Python to the DB
-#     session = Session(engine)
-
-#     """List all available api routes."""
-#     #return render_template('index.html', dashboard=results)
-#     combined_query=text("select * "
-#                         "from flight_summary fs, flight_trajectory ft, aircraft_metadata am "
-#                         "where fs.flight_id = ft.flight_id "
-#                         "and am.icao24 = ft.icao24 "
-#                         "and ft.flight_id in "
-#                         "(select distinct ft.flight_id from flight_trajectory ft where ft.flight_id = :x)")
-#     combined_flight_data = engine.execute(combined_query, {"x":"ARG1511_20180101"}).fetchall()
-#     combined_df = {'result': [dict(row) for row in combined_query]}
-#     return render_template('index.html', dashboard=combined_df)
-
-# TRAJECTORY DEFAULT
-# @app.route("/trajectory_default")
-# def trajectory_initial():
-#     # Create our session (link) from Python to the DB
-#     session = Session(engine)
-
-#     """List all available api routes."""
-#     #return render_template('index.html', dashboard=results)
-#     default_trajectory_query = text("select * "
-#                         "from flight_trajectory ft "
-#                         "where ft.flight_id in "
-#                         "(select distinct ft.flight_id from flight_trajectory ft where ft.flight_id = :x)")
-#     initial_aircraft_trajectory = engine.execute(default_trajectory_query, { "x":"ARG1511_20180101"}).fetchall()
-#     trajectory_df = {'traj_result': [dict(row) for row in initial_aircraft_trajectory]}
-#     return render_template('index.html', first_view_trajectory = Initial_aircraft_trajectory)
-
-# TRAJECTORY FILTERED
-# @app.route("/trajectory_filtered")
-# def trajectory_dynamic():
-#     # Create our session (link) from Python to the DB
-#     session = Session(engine)
-
-#     """List all available api routes."""
-#     #return render_template('index.html', dashboard=results)
-#     user_selected_aircraft_trajectory = text("select * "
-#                         "from flight_trajectory ft "
-#                         "where ft.flight_id in "
-#                         "(select distinct ft.flight_id from flight_trajectory ft where ft.flight_id = :x)")
-#     filtered_aircraft_trajectory = engine.execute(user_selected_aircraft_trajectory, {"x":"ARG1511_20180101"}).fetchall()
-#     filtered_trajectory_df = {'result': [dict(row) for row in results]}
-#     return render_template('index.html', filtered_view_trajectory=filtered_trajectory_df)
-
-
-# @app.route("/test")
-# def test():
-#      session = Session(engine)
-
-#      # Query all passengers
-#      results = engine.execute('select distinct substr(am.manufacturername,1,6), count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 and ft.flight_id in (select distinct ft.flight_id from flight_trajectory ft where ft.squawk = 7700) group by substr(am.manufacturername,1,6) order by count(distinct fs.flight_id) DESC').fetchall()
-
-#      session.close()
-#      #return render_template('index.html', squawk7700=results)
-#      data = {'result': [dict(row) for row in results]}
-#      return render_template('index.html', test=data)
 
 @app.route("/")
 def test_two_data():
@@ -330,12 +273,21 @@ def change(icao):
 def summary_stats():
      session = Session(engine)
      # Queries for summary statistics
+<<<<<<< HEAD
      results1 = engine.execute('select distinct substr(am.manufacturername,1,6), count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by substr(am.manufacturername,1,6) order by count(distinct fs.flight_id) DESC').fetchall()
      results2 = engine.execute('select distinct fs.origin, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.origin order by count(distinct fs.flight_id) DESC').fetchall()
      results3 = engine.execute('select distinct fs.destination, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.destination order by count(distinct fs.flight_id) DESC').fetchall()
      results4 = engine.execute('select distinct am.icaoaircrafttype, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by am.icaoaircrafttype order by count(distinct fs.flight_id) DESC').fetchall()
      results5 = engine.execute('select distinct fs.avh_problem, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.avh_problem').fetchall()
      results6 = engine.execute('select distinct fs.avh_result, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.avh_result').fetchall()
+=======
+     results1 = engine.execute('select distinct am.manufacturername, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by am.manufacturername having length(am.manufacturername)>3 order by count(distinct fs.flight_id) DESC limit(10)').fetchall()
+     results2 = engine.execute('select distinct fs.origin, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.origin having length(fs.origin)>3 order by count(distinct fs.flight_id) DESC limit(10)').fetchall()
+     results3 = engine.execute('select distinct fs.destination, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.destination having length(fs.destination)>3 order by count(distinct fs.flight_id) DESC limit(10)').fetchall()
+     results4 = engine.execute('select distinct am.icaoaircrafttype, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by am.icaoaircrafttype having length(am.icaoaircrafttype)>1 order by count(distinct fs.flight_id) DESC limit(10)').fetchall()
+     results5 = engine.execute('select distinct fs.avh_problem, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.avh_problem having length(fs.avh_problem)>3 order by count(distinct fs.flight_id) DESC limit(10)').fetchall()
+     results6 = engine.execute('select distinct fs.avh_result, count(distinct fs.flight_id) from flight_summary fs, flight_trajectory ft, aircraft_metadata am where fs.flight_id = ft.flight_id and am.icao24 = ft.icao24 group by fs.avh_result having length(fs.avh_result)>3 order by count(distinct fs.flight_id) DESC limit(10)').fetchall()
+>>>>>>> jack
      session.close()
      #Manufacturer Table
      manufacturer= [result[0] for result in results1]
@@ -379,15 +331,16 @@ def summary_stats():
      }]
      
      #Result Frequency
-     avh_result= [result[0] for result in results5]
+     avh_result= [result[0] for result in results6]
      numberofflights6 = [int(result[1]) for result in results6]
     
      result_frequency_table  = [{
         "AVH Result": avh_result,
         "Number of Flights with 7700 Squawk Code": numberofflights6
      }]
-     table_list=[manufacturer_table, origin_table, destination_table, aircraft_type_table, problem_frequency_table, result_frequency_table]
+     table_list1=[manufacturer_table, origin_table, destination_table, aircraft_type_table, problem_frequency_table, result_frequency_table]
      
+<<<<<<< HEAD
      return render_template('index1.html', data = jsonify(table_list))
 
 @app.route("/about")
@@ -408,10 +361,17 @@ if __name__ == '__main__':
 #     lon = [result[2] for result in results]'
 
 # return jsonify(pet_data)
+=======
+     return render_template('index1.html', data = table_list1)
+>>>>>>> jack
 
 
+@app.route("/about")
+def about():
+    return render_template('index2.html')
 
 
+<<<<<<< HEAD
 
 
 
@@ -635,3 +595,7 @@ if __name__ == '__main__':
 
 # # if __name__ == "__main__":
 # #     app.run()
+=======
+if __name__ == '__main__':
+    app.run(debug=True)
+>>>>>>> jack

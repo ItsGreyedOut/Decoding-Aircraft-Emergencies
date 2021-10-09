@@ -28,8 +28,14 @@
                         <h7>Pages</h7>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+<<<<<<< HEAD
                         <a class="dropdown-item" href="http://127.0.0.1:5000/api/v1.0/">Home</a>
                         <a class="dropdown-item" href="http://127.0.0.1:5000/api/v1.0/about">About</a>
+=======
+                        <a class="dropdown-item" href="http://127.0.0.1:5000/">Home</a>
+                        <a class="dropdown-item" href="http://127.0.0.1:5000/summary_stats">Summary Statistics</a>
+                        <a class="dropdown-item" href="http://127.0.0.1:5000/about">About</a>
+>>>>>>> jack
                     </div>
                 </li>
 
@@ -44,29 +50,34 @@
         </div>
     </nav>
     <!-- Jumbotron -->
+<main>
     <div class="container">
         <div class="row">
             <div class="col-md-12 jumbotron text-center">
                 <h1>Squawk 7700 Statistics</h1>
-                <h6><strong>Use the interactive charts below to explore the dataset</strong></h6>
+                <h6><strong>Use the interactive chart below to explore the dataset</strong></h6>
             </div>
-            <div class="row">
-                <div class="col-md-5">
-                </div>
+        </div>
+        <div class="container">
+            <div class="well">
+                <h3 style='text-align: center;color: black;font-size: 22px;'>Top 10 Flight Manufacturers With Most Aircraft Emergencies</h3>
+                <h5>Pick Chart:</h5>
+                <select id="sel"></select>
+                <p></p>        
+                <canvas id="myChart"></canvas>
             </div>
+        </div>
             <!-- Add Javascript, Plotly and D3  -->
             <script src="https://d3js.org/d3.v5.min.js"></script>
             <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script src="path/to/chartjs/dist/chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
             <!-- Reference Data from Flask -->
-            <script>
-                const jsdata = {
-                    {
-                        dataFromFlask | tojson | safe
-                    }
-                }
-            </script>
-            <script src="static/app.js"></script>
-
+            <script>const dataset = {{ data | tojson | safe }}</script>
+            <script src="static/squawk.js"></script>
+</main>
 </body>
 <!-- Footer Section -->
 <br>
@@ -74,15 +85,21 @@
 <br>
 <footer class="footer navbar-expand-lg text-center text-white">
     <div class="footer-copyright">
-        <div class="top"> <span> Emergency Aircraft Dashboard </span>
+        <div class="top"> <span>Aircraft Emergencies Dashboard </span>
         </div>
         <div class="bottom"> <span>2021</span>
         </div>
     </div>
 </footer>
+<<<<<<< HEAD
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
 
+=======
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+>>>>>>> jack
 </html>

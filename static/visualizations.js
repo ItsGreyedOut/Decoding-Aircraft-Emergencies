@@ -1,8 +1,4 @@
 console.log(dataset);
-// TO DO:
-// - Filter Function improve/get it to work
-// - Add markers to the map (airport data?? location of start and end are not always takeoff and landing)
-// - Create summary statistics tables
 
 // Flight Summary Table
 let icao = dataset[0][0]['ICAO24'][0];
@@ -27,7 +23,7 @@ for (const [key, value] of Object.entries(meta)) {
     if (value != 'NaN') {
         aircraft += "<p><span>"+key+":</span> "+value+"</p>";
     }
-}
+};
 document.getElementById("aircraft_info").innerHTML = aircraft
 
 // Flight Title
@@ -104,6 +100,19 @@ for (var j = 0; j < dataset[1][0]['Origin'].length; j++) {
     var opt = document.createElement("option"); 
     opt.text = dataset[1][0]['Origin'][j].toString();
     opt.value = dataset[1][0]['Origin'][j].toString();
+    dropdown.options.add(opt);
+};
+
+var dropdown = document.getElementById("selDataset2");
+var opt = document.createElement("option"); 
+opt.text = 'Select Problem';
+opt.value = '';
+dropdown.options.add(opt);
+for (var j = 0; j < dataset[1][0]['AVH Problem'].length; j++) {
+    var dropdown = document.getElementById("selDataset2");
+    var opt = document.createElement("option"); 
+    opt.text = dataset[1][0]['AVH Problem'][j].toString();
+    opt.value = dataset[1][0]['AVH Problem'][j].toString();
     dropdown.options.add(opt);
 };
 

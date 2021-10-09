@@ -146,8 +146,44 @@ th     { background:#eee; }
     margin: auto;
 }
 
+.well h5 {
+    font-size: 18px;
+}
+
 /* Footer */
 
 footer {
     background-color: #268BD2;
+}
+
+.row {
+    margin-top: 15px;
+}
+
+.text {
+    display: inline;
+}
+
+.block {
+    display: block;
+}
+
+.back {
+    display: block;
+    margin:10px;
+    padding:15px;
+    font-size: 16px;
+    color: black;
+}
+
+.back p {
+    padding:10px;
+    margin:0px;
+    font-size: 16px;
+    color: black;
+}
+
+img {
+    margin:auto;
+    width:80%;
 }
