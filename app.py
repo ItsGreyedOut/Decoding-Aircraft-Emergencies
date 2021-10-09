@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 from flask_sqlalchemy import SQLAlchemy
 import os
+import psycopg2
 
 from flask import Flask, jsonify
 from flask import render_template, request, redirect, url_for, flash
@@ -21,6 +22,10 @@ app = Flask(__name__)
 #################################################
 engine = create_engine("postgresql://postgres:postgres@localhost:5432/aircraft_project")
 
+# Heroku
+DATABASE_URL = os.environ['postgres://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
 # reflect an existing database into a new model
 Base = automap_base()
 # reflect the tables
@@ -31,17 +36,18 @@ aircraft_metadata = Base.classes.aircraft_metadata
 flight_summary = Base.classes.flight_summary
 flight_trajectory = Base.classes.flight_trajectory
 
-# Heroku setup
-engine.config['postgresql://postgres:postgres@localhost:5432/aircraft_project'] = os.environ.get('postgres://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti', '')
-# Connects to the database using the app config
-db = SQLAlchemy(engine)
+# # Heroku setup
+# engine.config['postgresql://postgres:postgres@localhost:5432/aircraft_project'] = os.environ.get('postgres://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti', '')
+
+# # Connects to the database using the app config
+# db = SQLAlchemy(engine)
 
 #################################################
 # Flask Routes
 #################################################
 
-@app.route("/dashboard")
-def dashboard():
+@app.route("/")
+def test_two_data():
     session = Session(engine)
 
     # Query all passengers
