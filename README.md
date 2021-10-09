@@ -4,43 +4,66 @@
 
 ![alt text](http://github.com/itsgreyedout/project-3/blob/master/images/airplane.jpg?raw=true)
 
-# About this project:
-As frequent flyers, our team was interested in exploring aircraft data related to 7700 squawk codes, in flight emergency air situations. etc. A dashboard page with multiple charts that update from the same data
-1 January 2018 and 29 January 2020.
+## About this project:
+As frequent flyers, our team was interested in exploring in-flight emergency air situations using squawk 7700 codes. We created an interactive web dashboard using Heroku to explore over 4.2 million rows of data from OpenSky which we loaded into PostgreSQL. 
 
-# Technologies:
+Data is derived from the OpenSky dataset in order to illustrate in-flight emergency situations triggering the 7700 transponder code. Data spans flights seen by the network's more than 2500 members between 1 January 2018 and 29 January 2020.
+
+Multiple charts update from data that is stored in PostgreSQL. The project is powered by a Python Flask API and Heroku. 
+
+Airlines can use this data to highlight safety issues they need to address and compare aircraft performance. Customers can use this data to learn about frequent flight emergencies and select airlines or aircraft types with fewer emergencies. 
+
+Dashboard Link:[Link](https://gtdsproject3aircraftdata.herokuapp.com/)
+
+## Technologies:
 Requirement: The project should include at least one JS library that we did not cover
-Python
-Javascript
-SQL
-PostgreSQL
-Plotly
-Flask
-HTML/CSS
-Heroku
-
-# Architectural Diagram:
-![alt text](https://github.com/ItsGreyedOut/Project-3/blob/master/images/ArchDiag.jpg)
-
-# Data Sources:
-Requirement: The project must be powered by a dataset with at least 100 records
-
-Aircraft Metadata: Aircraft Metadata .csv
-Flight Trajectory: Aircraft Flight parquet.gz
-Flight Summary: Squawk 7700
-
-Aircraft Dataset:
-Here’s the aircraft dataset (aircraft metadata) link.  Download the zip file.
-Aircraft flight info https://traffic-viz.github.io/index.html. Download the .parquet.gz file.
+-Python
+-SQLAlchemy
+-SQL
+-PostgreSQL
+-Javascript
+-D3
+-Chart.js
+-Leaflet
+-HTML/Bootstrap/CSS
+-Flask
+-Heroku
 
 
-# Flask: 
+## Architectural Diagram:
+![ETL](https://github.com/ItsGreyedOut/Project-3/blob/master/images/airplane_etl_diagram.png)
+
+## Approach
+1. Identify data sources and dependencies
+2. Collect and clean aircraft, emergency and flight trajectory data
+3. Join 3 datasets on flight_id & icao
+4. Load data in PostgreSQL using SQLAlchemy
+5. Create Flask App and connect routes to PostgreSQL
+6. Create charts and map using Javascript libraries
+7. Customize html and css for final application
+8. Visualize dashboard in Heroku
+
+## Limitations & Assumptions
+- Limited time of project
+- Flight data is from before Feb 2020
+- Only 813 rows of squawk code 7700 data
+- Assume data is correct via OpenSky
+
+
+## Data Sources:
+Data is derived from the OpenSky dataset. Data spans flights seen by the network's more than 2500 members between 1 January 2018 and 29 January 2020.
+
+[Aircraft Metadata zip](https://opensky-network.org/datasets/metadata/)
+[Aircraft Flight parquet.gz](https://zenodo.org/record/3937483#.YVYFBUbMIdV)
+[Flight Summary 7700.csv](https://zenodo.org/record/3937483#.YVYFBUbMIdV) 
+
+## Schema (ERD): 
+![ERD](https://github.com/ItsGreyedOut/Project-3/blob/master/images/ERD.png)
 
 # Dashboard: 
-Requirement: The project must include some level of user-driven interaction (e.g., menus, dropdowns, textboxes)
-[add description and screenshots of visualizations]
 
-# Project 3 ✍️ Team members and links to their personal GitHub sites to review thier portfolios:
+
+# Project 3 ✍️ Team members and links to their personal GitHub sites to review their portfolios:
 
 Lauren To -  https://github.com/laurenemilyto
 
