@@ -11,13 +11,20 @@ import os
 from flask import Flask, jsonify
 from flask import render_template, request, redirect, url_for, flash
 
+################################################
+# Flask Setup
+#################################################
+app = Flask(__name__)
+
 #################################################
 # Database Setup
 #################################################
-#jack_connection_string = "postgres:postgres@localhost:5432/aircraft_project"
-#matt_connection_string = "postgresql://postgres:Thatstraightline84!@localhost:5432/aircraft_project"
-#engine = create_engine(f'postgresql://{matt_connection_string}')
 engine = create_engine("postgresql://postgres:postgres@localhost:5432/aircraft_project")
+
+# Heroku setup
+app.config['postgresql://postgres:postgres@localhost:5432/aircraft_project'] = os.environ.get('postgres://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti', '')
+# Connects to the database using the app config
+db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -28,18 +35,6 @@ Base.prepare(engine, reflect=True)
 aircraft_metadata = Base.classes.aircraft_metadata
 flight_summary = Base.classes.flight_summary
 flight_trajectory = Base.classes.flight_trajectory
-
-#################################################
-# Flask Setup
-#################################################
-app = Flask(__name__)
-
-
-# DATABASE_URL will contain the database connection string:
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgres://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti', '')
-# Connects to the database using the app config
-db = SQLAlchemy(app)
-
 
 #################################################
 # Flask Routes
