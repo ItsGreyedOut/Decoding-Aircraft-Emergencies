@@ -64,7 +64,7 @@ flight_trajectory = Base.classes.flight_trajectory
 # engine.config['postgresql://postgres:postgres@localhost:5432/aircraft_project'] = os.environ.get('postgres://twuesfftkzadma:4c838c085bb037cb837b6a5e7fda58e0767ed5d778cf27733656cf33b0e21668@ec2-44-198-204-136.compute-1.amazonaws.com:5432/ddbq911md86sti', '')
 
 # # Connects to the database using the app config
-# db = SQLAlchemy(engine)
+db = SQLAlchemy(engine)
 
 #################################################
 # Flask Routes
