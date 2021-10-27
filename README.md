@@ -9,9 +9,8 @@ Data is derived from the OpenSky dataset in order to illustrate in-flight emerge
 
 Multiple charts update from data that is stored in PostgreSQL. The project is powered by a Python Flask API and Heroku. 
 
-Airlines can use this data to highlight safety issues they need to address and compare aircraft performance. Customers can use this data to learn about frequent flight emergencies and select airlines or aircraft types with fewer emergencies. 
-
-Dashboard Link: [Link](https://gtdsproject3aircraftdata.herokuapp.com/)
+## Business implications:
+Airlines can use this data to highlight safety issues they need to address and compare aircraft performance. This data can help governing entities and aerospace companies like the FAA, etc. determine where issues most commonly arise. Customers can use this data to learn about frequent flight emergencies and select airlines or aircraft types with fewer emergencies. 
 
 ## Technologies: :hammer:	
 - Python
@@ -25,9 +24,8 @@ Dashboard Link: [Link](https://gtdsproject3aircraftdata.herokuapp.com/)
 - Flask
 - Heroku
 
-
 ## Architectural Diagram:
-![ETL](https://github.com/ItsGreyedOut/Project-3/blob/master/images/airplane_etl_diagram.png)
+![ETL](https://i.pinimg.com/originals/b1/79/90/b17990f25c4ac34d41b1e759e472a980.jpg)
 
 ## Approach
 1. Identify data sources and dependencies
@@ -37,14 +35,35 @@ Dashboard Link: [Link](https://gtdsproject3aircraftdata.herokuapp.com/)
 5. Create Flask App and connect routes to PostgreSQL
 6. Create charts and map using Javascript libraries
 7. Customize html and css for final application
-8. Visualize dashboard in Heroku
+8. Visualize dashboard locally or in Heroku
 
-## Limitations & Assumptions
+## Transformations
+- Create SQL schemas
+- Lowercase column names so that they can be loaded into postgresql
+- Convert data types
+- Remove NaN values and rows
+- Query and filter using SQLAlchemy
+- Jsonify data to power javascript visualizations
+
+## Limitations, Assumptions & Challenges
 - Limited time of project
-- Flight data is from before Feb 2020
-- Only 813 rows of squawk code 7700 data
-- Assume data is correct via OpenSky
+- Flight data is from Jan 2018 to Feb 2020
+- Only 813 flights of squawk code 7700 data, however each flight has many rows of data
+- Assume data is correct since the dataset was manually filled with research from various sources on the Internet to fill missing info from OpenSky
+- One of the biggest challenges in this project was trying to deploy our website on Heroku. Our database had around 4.2 million rows of data. It wasn't until we completed the project that we learned the free version of Heroku has a limitation of 10k records. Since each row is a lat/long point on our flight path visualization, we could not reduce our dataset without rebuilding our final application. We were unable to do this to time constraints. Deploying an application to Heroku for the first time, we learned many new things like importing correct libraries, modifying flask, connecting to Heroku's database, and ensuring that your data is under 10k records.
 
+## Run Flask
+To Deploy our Flask App, please follow the below steps :
+
+- Step 1: Git clone our repository 
+- Step 2: Confirm that jupyter notebook is up and running with the env where you have the python libraries mentioned in the notebook installed
+- Step 3: Confirm that you have postgress app up and running in your machine
+- Step 4: Confirm that your postgress username and password is added to the config.py
+- Step 5: Create a database in postgres called 'aircraft_project'
+- Step 6: Use the aircraft_schema file to run the create table commands
+- Step 7: Run aircraft_traffic.ipynb jupyter notebook to connect to PostgreSQL and upload data into SQL database
+- Step 8: Confirm that your app.py file has the correct password for PostgreSQL for engine.config
+- Step 10: Execute command python app.py and launch the server using URL: http://127.0.0.1:5000/
 
 ## Data Sources:
 Data is derived from the OpenSky dataset. Data spans flights seen by the network's more than 2500 members between 1 January 2018 and 29 January 2020.
@@ -54,12 +73,33 @@ Data is derived from the OpenSky dataset. Data spans flights seen by the network
 - [Flight Summary 7700.csv](https://zenodo.org/record/3937483#.YVYFBUbMIdV) 
 
 ## Schema (ERD): 
-![ERD](https://github.com/ItsGreyedOut/Project-3/blob/master/images/ERD.png)
+Our schema consists of 3 tables, linked via flight_id and icao24 ids. Tables consist of 4.2 million rows of data.
+![ERD](https://i.pinimg.com/originals/86/17/5b/86175b976971235e668c1d22cc378ef3.jpg)
 
-## Dashboard: 
+## Visualizations & Analysis
+We created several interactive visualizations for our website using JavaScript libraries like Leaflet, Plotly and D3.
 
+EMERGENCY AIRCRAFT DASHBOARD
+- Select a flight date, origin or problem from one of the dropdowns
+- Select a flight from the table
+- Aircraft and Flight info data and visualization dynamically update for selected flight
+![Flight data](https://i.pinimg.com/originals/80/32/c0/8032c0441c2fd4d277184c3ac5e4363c.jpg)
 
-## Contributors:
+- Flight Telemetry data and visualization dynamically update for selected flight
+- Flight Map data and visualization dynamically update to show flight path of selected flight
+![Flight data](https://i.pinimg.com/originals/6d/76/2d/6d762d14e83d9ba88f098e04c8b610ab.jpg)
+
+SQUAWK 7700 STATISTICS
+- Select flight manufacturer, origin, aircraft type, avh problem, avh result from the dropdown
+- Data and visualization title dynamically update
+![Flight data](https://i.pinimg.com/originals/44/ed/6f/44ed6fd40fc286faeb1b753c6fe08de7.jpg)
+
+## Website Design
+There are a total of 3 Webpages that were built using HTML, CSS, and Bootstrap.
+
+![ERD](https://i.pinimg.com/originals/86/17/5b/86175b976971235e668c1d22cc378ef3.jpg)
+
+## Team Members:
 
 Lauren To -  https://github.com/laurenemilyto
 
