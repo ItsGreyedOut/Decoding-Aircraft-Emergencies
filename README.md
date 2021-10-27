@@ -79,25 +79,25 @@ Our schema consists of 3 tables, linked via flight_id and icao24 ids. Tables con
 ## Visualizations & Analysis
 We created several interactive visualizations for our website using JavaScript libraries like Leaflet, Plotly and D3.
 
-EMERGENCY AIRCRAFT DASHBOARD
+#### Emergency Aircraft Dashboard
 - Select a flight date, origin or problem from one of the dropdowns
 - Select a flight from the table
 - Aircraft and Flight info data and visualization dynamically update for selected flight
-![Flight data](https://i.pinimg.com/originals/80/32/c0/8032c0441c2fd4d277184c3ac5e4363c.jpg)
+![Flight data1](https://i.pinimg.com/originals/50/12/07/501207287434926a415418c0dd752f75.jpg)
 
 - Flight Telemetry data and visualization dynamically update for selected flight
 - Flight Map data and visualization dynamically update to show flight path of selected flight
-![Flight data](https://i.pinimg.com/originals/6d/76/2d/6d762d14e83d9ba88f098e04c8b610ab.jpg)
+![Flight data2](https://i.pinimg.com/originals/6d/76/2d/6d762d14e83d9ba88f098e04c8b610ab.jpg)
 
-SQUAWK 7700 STATISTICS
+#### Squawk 7700 Statistics 
 - Select flight manufacturer, origin, aircraft type, avh problem, avh result from the dropdown
 - Data and visualization title dynamically update
-![Flight data](https://i.pinimg.com/originals/44/ed/6f/44ed6fd40fc286faeb1b753c6fe08de7.jpg)
+![Flight data3](https://i.pinimg.com/originals/44/ed/6f/44ed6fd40fc286faeb1b753c6fe08de7.jpg)
 
 ## Website Design
-There are a total of 3 Webpages that were built using HTML, CSS, and Bootstrap.
+This application includes 3 responsive webpages with dynamic navigation that were built using HTML, CSS, and Bootstrap.
 
-![ERD](https://i.pinimg.com/originals/86/17/5b/86175b976971235e668c1d22cc378ef3.jpg)
+![ERD](https://i.pinimg.com/originals/80/32/c0/8032c0441c2fd4d277184c3ac5e4363c.jpg)
 
 ## Team Members:
 
