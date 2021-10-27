@@ -79,7 +79,7 @@ Our schema consists of 3 tables, linked via flight_id and icao24 ids. Tables con
 ## Visualizations & Analysis
 We created several interactive visualizations for our website using JavaScript libraries like Leaflet, Plotly and D3. A walkthrough of our application is below: 
 
-![gif](http://github.com/itsgreyedout/project-3/blob/master/images/application_walkthrough.gif)
+ <img src="http://github.com/itsgreyedout/project-3/blob/master/images/application_walkthrough.gif" alt="Loading" title="Loading" width = 300 />
 
 #### Emergency Aircraft Dashboard
 - Select a flight date, origin or problem from one of the dropdowns
