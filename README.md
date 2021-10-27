@@ -77,17 +77,21 @@ Our schema consists of 3 tables, linked via flight_id and icao24 ids. Tables con
 ![ERD](https://i.pinimg.com/originals/86/17/5b/86175b976971235e668c1d22cc378ef3.jpg)
 
 ## Visualizations & Analysis
-We created several interactive visualizations for our website using JavaScript libraries like Leaflet, Plotly and D3.
+We created several interactive visualizations for our website using JavaScript libraries like Leaflet, Plotly and D3. A walkthrough of our application is below: 
+
+![gif](http://github.com/itsgreyedout/project-3/blob/master/images/application_walkthrough.gif)
 
 #### Emergency Aircraft Dashboard
 - Select a flight date, origin or problem from one of the dropdowns
-- Select a flight from the table
-- Aircraft and Flight info data and visualization dynamically update for selected flight
 ![Flight data1](https://i.pinimg.com/originals/50/12/07/501207287434926a415418c0dd752f75.jpg)
-
+- Select a flight from the table
+![Flight data2](https://i.pinimg.com/originals/1b/84/e5/1b84e5007ac8a09ada8156fdce3f9757.jpg)
+- Aircraft and Flight info data and visualization dynamically update for selected flight
+![Flight data3](hhttps://i.pinimg.com/originals/f7/21/46/f7214693871d62ff9cf85ce1dc3a24bd.jpg)
 - Flight Telemetry data and visualization dynamically update for selected flight
+![Flight data4](https://i.pinimg.com/originals/26/79/a9/2679a9416896d95791d1a1b48ee85469.jpg)
 - Flight Map data and visualization dynamically update to show flight path of selected flight
-![Flight data2](https://i.pinimg.com/originals/6d/76/2d/6d762d14e83d9ba88f098e04c8b610ab.jpg)
+![Flight data5](https://i.pinimg.com/originals/77/1e/d6/771ed657a1c828d41790a7f8ff2045c0.jpg)
 
 #### Squawk 7700 Statistics 
 - Select flight manufacturer, origin, aircraft type, avh problem, avh result from the dropdown
@@ -95,7 +99,7 @@ We created several interactive visualizations for our website using JavaScript l
 ![Flight data3](https://i.pinimg.com/originals/44/ed/6f/44ed6fd40fc286faeb1b753c6fe08de7.jpg)
 
 ## Website Design
-This application includes 3 responsive webpages with dynamic navigation that were built using HTML, CSS, and Bootstrap.
+This application includes 3 responsive webpages with dynamic navigation built using HTML, CSS, and Bootstrap.
 
 ![ERD](https://i.pinimg.com/originals/80/32/c0/8032c0441c2fd4d277184c3ac5e4363c.jpg)
 
