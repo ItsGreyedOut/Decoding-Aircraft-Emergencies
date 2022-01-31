@@ -103,7 +103,7 @@ This application includes 3 responsive webpages with dynamic navigation built us
 
 ![ERD](https://i.pinimg.com/originals/80/32/c0/8032c0441c2fd4d277184c3ac5e4363c.jpg)
 
-## Team Members:
+## Contributors:
 
 Lauren To -  https://github.com/laurenemilyto
 
